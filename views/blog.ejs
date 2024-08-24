@@ -9,6 +9,40 @@
     <%- include('./partials/nav') %>
 
 
+    <div class="container mt-4">
+        <h1 class="fw-bolder"><%= blog.title %></h1>
+        <div class="mt-4">
+            <img src="<%= blog.createdBy.profileImageUrl %>" height="35px" alt=""><span class="fs-5 fw-semibold align-middle ms-2"><%= blog.createdBy.fullName %> </span>
+        </div>
+        <img class="mt-3 in" src="<%= blog.coverImageUrl %>" width="700px" alt="">
+        <p class="mt-4 fs-5" style="white-space: pre-wrap;"><%= blog.body %></p>
+    </div>
+
+    <% if (locals.comments.length || locals.user) { %>
+        <h3 class="container fw-bolder">Comments (<%= locals.comments.length %>)</h3>
+
+    <% } %>
+
+    <% if (locals.user) { %>
+        <div class="container mb-3">
+            <form action="/blog/comment/<%= blog._id %>" method="post">
+                <input class="form-control" name="content" type="text">
+                <button type="submit" class="btn btn-primary mt-2">comment</button>
+            </form>
+        </div>
+    <% } %>
+
+    <% if (locals.comments.length ) { %>
+        <div class="container border rounded mb-4">
+            <% comments.forEach(comment => { %>
+                <div class="container border-bottom mt-3">
+                    <img src="<%= comment.createdBy.profileImageUrl %>" height="25px" alt=""><span class="fs-6 fw-semibold align-middle ms-2"> <%= comment.createdBy.fullName %></span>
+                    <p class="mt-1"><%= comment.content %></p>
+                </div>
+                <% }) %>
+            </div>
+    <% } %>
+
 
     <%- include('./partials/script') %>
 </body>
