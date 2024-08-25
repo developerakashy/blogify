@@ -12,7 +12,7 @@ import Blog from './models/blog.js'
 
 
 const PORT = process.env.PORT
-const mongoDBUrl = process.env.mongoUrl
+const mongoDBUrl = process.env.MONGODB_URI
 const app = express()
 
 connectDB(mongoDBUrl)
