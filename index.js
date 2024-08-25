@@ -1,19 +1,23 @@
+import dotenv from 'dotenv'
 import express from 'express'
 import path from 'path'
 import connectDB from './connection.js'
 import { checkForAuthentication } from './middlewares/authentication.js'
 import cookieParser from 'cookie-parser'
+dotenv.config()
 
 import userRoute from './routes/user.js'
 import blogRoute from './routes/blog.js'
 import Blog from './models/blog.js'
-import { timeStamp } from 'console'
 
-const PORT = 8000
+
+const PORT = process.env.PORT
+const mongoDBUrl = process.env.mongoUrl
 const app = express()
 
-connectDB('mongodb://localhost:27017/blogify')
+connectDB(mongoDBUrl)
 .then(() => console.log("MongoDB connected"))
+.catch(error => console.log(error))
 
 app.set('view engine', 'ejs')
 app.set('views', path.resolve("./views"))
