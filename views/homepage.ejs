@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <%- include('./partials/head') %>
-    <title>Document</title>
 </head>
 
 <body>
@@ -10,11 +9,11 @@
 
 
 
-    <div class="container mt-4">
-        <div class="row row-cols-4">
+    <div class="container mt-4 mx-auto">
+        <div class="row g-4 mx-auto">
             <% blogs.forEach(blog => { %>
-                <div class="col">
-                    <div class="card col" style="width: 18rem;">
+                <div class="col mx-auto">
+                    <div class="card mx-auto" style="width: 18rem;">
                         <img src="<%= blog.coverImageUrl %>" class="card-img-top"  alt="...">
                         <div class="card-body">
                           <h5 class="card-title"><%= blog.title %></h5>

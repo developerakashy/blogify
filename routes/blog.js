@@ -17,6 +17,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 
 router.get('/addblog', (req, res) => {
+    if(!req.user) return res.redirect('/')
+    console.log(req.user)
 
     res.render('addblog', {
         user: req.user
@@ -37,12 +39,6 @@ router.get('/:id', async (req, res) => {
 })
 
 
-router.get('/addblog', (req, res) => {
-    console.log(req.user)
-    res.render('addblog', {
-        user: req.user
-    })
-})
 
 router.post('/comment/:blogId', async (req, res) => {
     const blog = await Blog.findById(req.params.blogId)

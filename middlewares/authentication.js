@@ -6,14 +6,17 @@ export function checkForAuthentication(cookieName){
         const cookieToken = req.cookies[cookieName]
 
         if(!cookieToken){
+            req.user = null
             return next()
         }
-        
+
         try{
             const user = validateToken(cookieToken)
             req.user = user
 
-        }catch(error){}
+        }catch(error){
+
+        }
 
         next()
     }

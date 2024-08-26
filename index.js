@@ -11,8 +11,8 @@ import blogRoute from './routes/blog.js'
 import Blog from './models/blog.js'
 
 
-const PORT = process.env.PORT
-const mongoDBUrl = process.env.MONGODB_URI
+const PORT = process.env.PORT || 8000
+const mongoDBUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/blogify'
 const app = express()
 
 connectDB(mongoDBUrl)
