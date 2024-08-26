@@ -18,7 +18,6 @@ const upload = multer({ storage })
 
 router.get('/addblog', (req, res) => {
     if(!req.user) return res.redirect('/')
-    console.log(req.user)
 
     res.render('addblog', {
         user: req.user
@@ -59,7 +58,7 @@ router.post('/add', upload.single('coverImage'), async (req, res) => {
     await Blog.create({
         title,
         body,
-        coverImageUrl: `/uploads/${req.file.filename}`,
+        coverImageUrl: req.file ? `/uploads/${req.file.filename}` : '/images/noImage.png',
         createdBy: req.user._id
     })
 

@@ -13,23 +13,23 @@
         <div class="mt-4">
             <img src="<%= blog.createdBy.profileImageUrl %>"  height="35px" alt=""><span class="fs-5 fw-semibold align-middle ms-2"><%= blog.createdBy.fullName %> </span>
         </div>
-        <img class="mt-3 in img-fluid" src="<%= blog.coverImageUrl %>" max-width="700px" alt="">
-        <p class="mt-4 fs-5" style="white-space: pre-wrap;"><%= blog.body %></p>
+        <img class="mt-3 mx-auto d-block img-fluid" src="<%= blog.coverImageUrl %>" alt="Blog Cover Image">
+        <p class="mt-4 fs-5 text-break" style="white-space: pre-wrap;"><%= blog.body %></p>
     </div>
 
-    <% if (locals.comments.length || locals.user) { %>
+
+
+
+
+    <div class="container mb-3">
         <h3 class="container fw-bolder">Comments (<%= locals.comments.length %>)</h3>
-
-    <% } %>
-
-    <% if (locals.user) { %>
-        <div class="container mb-3">
+        <% if (locals.user) { %>
             <form action="/blog/comment/<%= blog._id %>" method="post">
                 <input class="form-control" name="content" type="text">
                 <button type="submit" class="btn btn-primary mt-2">comment</button>
             </form>
-        </div>
-    <% } %>
+        <% } %>
+    </div>
 
     <% if (locals.comments.length ) { %>
         <div class="container border rounded mb-4">

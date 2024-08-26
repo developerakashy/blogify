@@ -11,7 +11,6 @@ const blogSchema = new Schema({
     },
     coverImageUrl: {
         type: String,
-        required: false,
     },
     createdBy: {
         type: Schema.Types.ObjectId,
