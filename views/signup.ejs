@@ -7,21 +7,29 @@
 <body>
     <%- include('./partials/nav') %>
 
+    <% if (locals.error) { %>
+      <div class="container mt-4">
+        <div class="p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+          <%= locals.error %>
+        </div>
+      </div>
+    <% } %>
+
     <div class="container mt-4">
 
     <form method="post" action="/user/signup" >
         <div class="mb-3">
             <label for="fullName" class="form-label">Full Name</label>
-            <input type="text" name="fullName" class="form-control" id="fullName">
+            <input type="text" value="<%= locals.fullName %>" name="fullName" class="form-control" id="fullName">
           </div>
         <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
-          <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+          <label for="email"  class="form-label">Email address</label>
+          <input type="email"  value="<%= locals.email %>" name="email" class="form-control" id="email" aria-describedby="emailHelp">
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" class="form-control" id="password">
+          <input type="password" value="<%= locals.password %>" name="password" class="form-control" id="password">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
